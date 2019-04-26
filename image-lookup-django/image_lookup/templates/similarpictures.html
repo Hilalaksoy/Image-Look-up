@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+
+<h2 style="color:#006080;">Benzer Resimleri Bulma</h2>
+<!-- {% if uploaded_file_url %}
+<img src="{{ uploaded_file_url }}" width="400px"; height="200px";>
+{% else %}
+<h1><i class="fa fa-file-image-o fa-5x" aria-hidden="true"></i></h1>
+{% endif %}
+</br>
+</br>
+<form method="post" enctype="multipart/form-data">
+<p style="color:#006080;">Resim Dosyası:</p>
+{% csrf_token %}
+<input type="file" name="myfile">
+</br>
+<button type="submit">Upload</button>
+</br>
+</form>
+{% if uploaded_file_url %}
+<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+{% endif %}
+
+<button type="" id="gonder">Gönder</button>
+<div class="content" id="image">
+
+</div> -->
+
+<form id="uploadimage" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+     <div><img id="resim" src="{% static 'images/deepImage.png' %}" width="400px"; height="200px";> </div>
+  </div>
+   <div class="form-group">
+      <label>Resim Seçiniz </label>
+      <input id="file" type="file" class="form-control-file">
+   </div>
+</form>
+
+
+<!-- <script>
+$(document).ready(function(){
+  $('#gonder').on('click', function(event){
+        $.ajax({
+          method:'POST'
+          url:'/image1/'
+          contentType="image1/jpg";
+        }).done(function(response){
+          $('#image').html(response.image);
+        });
+        event.preventDefault();
+    });
+})
+</script> -->
+<script type="text/javascript">
+  $(document).ready(function(e) {
+    $("#file").change(function(){
+        var reader = new FileReader();
+
+        reader.onload=imageload;
+        reader.readAsDataURL(this.files[0]);
+    });
+    function imageload(e){
+        $("#resim").attr('src',e.target.result);
+    }
+  });
+</script>
+
+
+{% endblock body %}

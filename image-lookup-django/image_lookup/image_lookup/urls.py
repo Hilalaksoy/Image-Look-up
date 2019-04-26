@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from imageSearch import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.Index,name="index"),
+    path('search/',views.Search,name="search"),
+    path('classification/',views.Classification,name="classification"),
+    path('similarpictures/',views.SimilarPictures,name="similarpictures")
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
